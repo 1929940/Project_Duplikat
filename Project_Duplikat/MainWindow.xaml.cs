@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AppLibrary;
 
 namespace Project_Duplikat
 {
@@ -23,6 +25,24 @@ namespace Project_Duplikat
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoadPdf1_Button_Click(object sender, RoutedEventArgs e)
+        {
+            string name = Utilities.GetPathFromDialog();
+            TextOperations.PdfToString(name);
+        }
+
+        private void LoadPdf2_Button_Click(object sender, RoutedEventArgs e)
+        {
+            string name = Utilities.GetPathFromDialog();
+            TextOperations.PdfToString(name);
+        }
+
+        private void Generate_Button_Click(object sender, RoutedEventArgs e)
+        {
+            //TextOperations.GenerateReport();
+            DBManager.GetDuplicates();
         }
     }
 }

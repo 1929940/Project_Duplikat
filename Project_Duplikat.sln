@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_Duplikat", "Project_Duplikat\Project_Duplikat.csproj", "{65BE7B62-E1DC-4352-8297-F786C3AC46C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF GUI", "Project_Duplikat\WPF GUI.csproj", "{65BE7B62-E1DC-4352-8297-F786C3AC46C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppLibrary", "AppLibrary\AppLibrary.csproj", "{751A882F-5FE3-4A16-9E32-0D407B92BE6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{65BE7B62-E1DC-4352-8297-F786C3AC46C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65BE7B62-E1DC-4352-8297-F786C3AC46C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65BE7B62-E1DC-4352-8297-F786C3AC46C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{751A882F-5FE3-4A16-9E32-0D407B92BE6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751A882F-5FE3-4A16-9E32-0D407B92BE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751A882F-5FE3-4A16-9E32-0D407B92BE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751A882F-5FE3-4A16-9E32-0D407B92BE6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
