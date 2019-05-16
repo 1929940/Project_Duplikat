@@ -12,7 +12,7 @@ namespace Project_Duplikat
             {
                 return dialog.FileName;
             }
-            return String.Empty;
+            return null;
         }
     }
 }

@@ -24,6 +24,6 @@
         </Grid.ColumnDefinitions>
         <Button Content="Load PDF 1" Name="LoadPdf1_Button" Grid.Column="0" Grid.Row="0" Click="LoadPdf1_Button_Click" />
         <Button Content="Load PDF 2" Name="LoadPdf2_Button" Grid.Column="1" Grid.Row="0" Click="LoadPdf2_Button_Click"/>
-        <Button Content="Generate" Name="Generate_Button" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Click="Generate_Button_Click"/>
+        <Button Content="Generate" Name="Generate_Button" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Click="Generate_Button_Click" IsEnabled="False"/>
     </Grid>
 </Window>
