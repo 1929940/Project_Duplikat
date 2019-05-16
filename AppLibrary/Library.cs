@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 
 namespace AppLibrary
 {
-    public class TextOperations
+    public class Library
     {
-        public static void UploadPDF(string path)
+        public static List<PersonModel> list1 = new List<PersonModel>();
+        public static List<PersonModel> list2 = new List<PersonModel>();
+
+        public static void UploadPDF(string path, List<PersonModel> list)
         {
             PdfReader reader = new PdfReader(path);
 
@@ -57,25 +62,11 @@ namespace AppLibrary
 
                     if (counter == 3)
                     {
-
                         counter = 0;
 
                         //Here add to dbs
-                        try
-                        {
-                            DBManager.UploadMain(Pesel, Nazwisko, Imie);
-                        }
-                        catch (System.Data.SQLite.SQLiteException)
-                        {
-                            try
-                            {
-                                DBManager.UploadDuplicate(Pesel, Nazwisko, Imie);
-                            }
-                            catch (System.Data.SQLite.SQLiteException)
-                            {
 
-                            }
-                        }
+                        list.Add(new PersonModel(Pesel, Nazwisko, Imie));
 
                         Pesel = "BŁĄD:PESEL";
                         Nazwisko = "BŁĄD:Nazwisko";
@@ -86,6 +77,31 @@ namespace AppLibrary
                 //Or just a delegate method
                 Debug.WriteLine("Finished Page: {0}", i);
             }
+        }
+
+        public static List<PersonModel> GenerateResult()
+        {
+            var output = list1.Except(list2, new PersonComparer());
+            if (output.Count() == 0)
+            {
+                output = list2.Except(list1, new PersonComparer());
+            }
+
+            return output.ToList<PersonModel>();
+        }
+        public static void PrintResults(List<PersonModel> input)
+        {
+            string path = "result-Project_Duplicat.txt";
+
+            using (StreamWriter sw = new StreamWriter(path, false))
+            {
+                int counter = 1;
+                foreach (var item in input)
+                {
+                    sw.WriteLine(String.Format("{0:00}. {1}", counter++, item));
+                }
+            }
+            System.Diagnostics.Process.Start(@"result-Project_Duplicat.txt");
         }
     }
 }

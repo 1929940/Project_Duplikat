@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Windows;
 using AppLibrary;
 using System.ComponentModel;
 
 namespace Project_Duplikat
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         string name;
@@ -18,7 +14,6 @@ namespace Project_Duplikat
         public MainWindow()
         {
             InitializeComponent();
-            DBManager.ClearDB();
         }
 
         private void LoadPdf1_Button_Click(object sender, RoutedEventArgs e)
@@ -31,7 +26,7 @@ namespace Project_Duplikat
 
             BackgroundWorker worker = new BackgroundWorker();
 
-            worker.DoWork += Worker_DoWork;
+            worker.DoWork += Worker_DoWork1;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
             worker.RunWorkerAsync();
@@ -40,7 +35,6 @@ namespace Project_Duplikat
             LoadPdf2_Button.IsEnabled = false;
 
             btnOneWasClicked = true;
-
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -61,9 +55,13 @@ namespace Project_Duplikat
             }
         }
 
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork1(object sender, DoWorkEventArgs e)
         {
-            TextOperations.UploadPDF(name);
+            Library.UploadPDF(name, Library.list1);
+        }
+        private void Worker_DoWork2(object sender, DoWorkEventArgs e)
+        {
+            Library.UploadPDF(name, Library.list2);
         }
 
         private void LoadPdf2_Button_Click(object sender, RoutedEventArgs e)
@@ -76,7 +74,7 @@ namespace Project_Duplikat
 
             BackgroundWorker worker = new BackgroundWorker();
 
-            worker.DoWork += Worker_DoWork;
+            worker.DoWork += Worker_DoWork2;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
             worker.RunWorkerAsync();
@@ -90,7 +88,7 @@ namespace Project_Duplikat
 
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
-            DBManager.GetDuplicates();
+            Library.PrintResults(Library.GenerateResult());
             this.Close();
         }
     }
