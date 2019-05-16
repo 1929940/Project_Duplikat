@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using iTextSharp.text.pdf;
@@ -9,7 +8,7 @@ namespace AppLibrary
 {
     public class TextOperations
     {
-        public static void PdfToString(string path)
+        public static void UploadPDF(string path)
         {
             PdfReader reader = new PdfReader(path);
 
@@ -78,34 +77,15 @@ namespace AppLibrary
                             }
                         }
 
-                        //Debug.WriteLine(Nazwisko);
-                        //Debug.WriteLine(Imie);
-                        //Debug.WriteLine(Pesel);
-                        //Debug.WriteLine("");
-
                         Pesel = "BŁĄD:PESEL";
                         Nazwisko = "BŁĄD:Nazwisko";
                         Imie = "BŁĄD:Imię";
                     }
                 }
+                //Inser BackGroundWorker.Update here
+                //Or just a delegate method
                 Debug.WriteLine("Finished Page: {0}", i);
             }
-        }
-
-        public static void GenerateReport()
-        {
-            //System.Data.SQLite.SQLiteDataReader reader = DBManager.GetDuplicates();
-
-            //string path = @"D:\result-Project_Duplicat.txt";
-
-            //using (StreamWriter sw = new StreamWriter(path, false))
-            //{
-            //    while (reader.Read())
-            //    {
-            //        string data = String.Format("{0}, {1}, {2}", reader["Pesel"], reader["Nazwisko"], reader["Imie"]);
-            //        sw.Write(data);
-            //    }
-            //};
         }
     }
 }

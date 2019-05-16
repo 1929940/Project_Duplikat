@@ -19,13 +19,13 @@ namespace Project_Duplikat
         private void LoadPdf1_Button_Click(object sender, RoutedEventArgs e)
         {
             string name = Utilities.GetPathFromDialog();
-            TextOperations.PdfToString(name);
+            TextOperations.UploadPDF(name);
         }
 
         private void LoadPdf2_Button_Click(object sender, RoutedEventArgs e)
         {
             string name = Utilities.GetPathFromDialog();
-            TextOperations.PdfToString(name);
+            TextOperations.UploadPDF(name);
         }
 
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
