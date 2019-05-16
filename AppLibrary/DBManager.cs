@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 
@@ -12,7 +8,7 @@ namespace AppLibrary
     {
         public static SQLiteConnection Connect()
         {
-            return new SQLiteConnection("Data Source=database.db");
+            return new SQLiteConnection("Data Source=./database.db;Version=3");
         }
         public static void UploadMain(string pesel, string nazwisko, string imie)
         {
@@ -43,7 +39,7 @@ namespace AppLibrary
         public static void GetDuplicates()
         {
             SQLiteDataReader reader;
-            string path = @"D:\result-Project_Duplicat.txt";
+            string path = "result-Project_Duplicat.txt";
             using (var cnn = Connect())
             {
                 cnn.Open();
@@ -58,11 +54,24 @@ namespace AppLibrary
                         sw.WriteLine(data);
                     }
                 };
-
             }
-            //return output;
+            System.Diagnostics.Process.Start(@"result-Project_Duplicat.txt");
 
-            //System.Data.SQLite.SQLiteDataReader reader = DBManager.GetDuplicates();
+        }
+
+        public static void ClearDB()
+        {
+            using (var cnn = Connect())
+            {
+                string statement = "DELETE FROM mainDB;";
+                cnn.Open();
+                SQLiteCommand command = new SQLiteCommand(statement, cnn);
+                command.ExecuteNonQuery();
+
+                statement = "DELETE FROM duplicatesDB;";
+                command = new SQLiteCommand(statement, cnn);
+                command.ExecuteNonQuery();
+            }
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using iTextSharp.text.pdf;
@@ -11,7 +12,6 @@ namespace AppLibrary
         public static void PdfToString(string path)
         {
             PdfReader reader = new PdfReader(path);
-
 
             string Pesel = "";
             string Nazwisko = "";
@@ -72,11 +72,10 @@ namespace AppLibrary
                             {
                                 DBManager.UploadDuplicate(Pesel, Nazwisko, Imie);
                             }
-                            catch (System.Data.SQLite.SQLiteException ex)
+                            catch (System.Data.SQLite.SQLiteException)
                             {
 
                             }
-                       
                         }
 
                         //Debug.WriteLine(Nazwisko);
